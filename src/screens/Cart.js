@@ -1,17 +1,16 @@
-import { cartService } from "../services/CartService";
+import { useCart } from "../contexts/CartContext";
 import { useState, useEffect } from "react";
 import { productClient } from "../api/ProductClient";
-import ProductCard from "../components/ProductCard";
 import ProductInCartCard from "../components/ProductInCartCard";
 import Subtotal from "../components/Subtotal";
 import AmazonButton from "../components/AmazonButton";
 
 function Cart() {
-  const [cartItems, setCartItems] = useState(cartService.getItems());
+  const { cart, getNumItems, getSubtotal, clear, update } = useCart();
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchProducts = async () => {
-      const productPromises = Object.keys(cartItems).map((id) =>
+      const productPromises = Object.keys(cart).map((id) =>
         productClient.getProductWithId(id)
       );
 
@@ -19,7 +18,7 @@ function Cart() {
       setProducts(resolvedProducts);
     };
     fetchProducts();
-  }, [cartItems]);
+  }, [cart]);
 
   return (
     <div className="flex flex-row items-start justify-center gap-4 bg-gray-100 ">
@@ -31,8 +30,10 @@ function Cart() {
           products.map((product, index) => (
             <>
               <ProductInCartCard
+                key={product.id}
+
                 product={product}
-                count={cartItems[product.id]}
+                count={cart[product.id]}
               />
               <hr />
             </>

@@ -2,24 +2,22 @@ import InStockLabel from "./InStockLabel";
 import { BsChevronDown } from "react-icons/bs";
 import AmazonPriceText from "./AmazonPriceText";
 import { FiTrash, FiPlus, FiMinus } from "react-icons/fi";
-import { cartService } from "../services/CartService";
-import { useState } from "react";
+import { useCart } from "../contexts/CartContext";
+
+import { useState, useEffect } from "react";
 
 function ProductInCartCard(props) {
   const product = props.product;
   const [count, setCount] = useState(props.count);
-
-  if (count <= 0) {
-    return;
-  }
+  const { cart, getNumItems, getSubtotal, clear, update } = useCart();
 
   const incrementCount = () => {
-    cartService.update(product.id, 1);
+    update(product.id, 1);
     setCount(count + 1);
   };
 
   const decrementCount = () => {
-    cartService.update(product.id, 1);
+    update(product.id, -1);
     setCount(count - 1);
   };
 

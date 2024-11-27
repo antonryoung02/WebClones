@@ -5,10 +5,12 @@ import Product from "./screens/Product";
 import "./App.css";
 import HeaderSection from "./components/HeaderSection";
 import FooterSection from "./components/FooterSection";
+import {CartProvider} from "./contexts/CartContext";
 
 function App() {
   return (
     <div>
+      <CartProvider>
       <BrowserRouter>
         <HeaderSection />
         <Routes>
@@ -18,6 +20,7 @@ function App() {
         </Routes>
         <FooterSection />
       </BrowserRouter>
+      </CartProvider>
     </div>
   );
 }

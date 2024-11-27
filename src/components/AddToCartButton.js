@@ -1,9 +1,11 @@
 import React from "react";
-import { cartService } from "../services/CartService";
+import { useCart } from "../contexts/CartContext";
 
 function AddToCartButton(props) {
   const className = props.className;
   const id = props.id;
+  const { update } = useCart();
+
 
   return (
     <button
@@ -11,7 +13,7 @@ function AddToCartButton(props) {
         "bg-yellow-300 rounded-2xl text-xs p-2 my-4 text-center hover:bg-yellow-400 " +
         className
       }
-      onClick={() => cartService.update(id, 1)}
+      onClick={() => update(id, 1)}
     >
       Add to cart
     </button>
