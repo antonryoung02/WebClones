@@ -21,8 +21,8 @@ function Cart() {
   }, [cart]);
 
   return (
-    <div className="flex flex-row items-start justify-center gap-4 bg-gray-100 ">
-      <div className="flex flex-col bg-white w-2/3 p-6  m-6">
+    <div className="flex flex-col md:flex-row items-start justify-center bg-gray-100 ">
+      <div className="flex flex-col bg-white w-full lg:w-2/3 p-6 my-8 lg:ml-28 mr-5">
         <p className="font-semibold text-2xl">Shopping Cart</p>
         <hr />
 
@@ -42,7 +42,7 @@ function Cart() {
           <p>Your cart is empty</p>
         )}
       </div>
-      <div className="bg-white w-1/6 p-6 m-6">
+      <div className="bg-white w-full lg:w-1/3 p-6 my-8 lg:mr-28 ml-4">
         <Subtotal products={products} />
         <div className="flex flex-row gap-2 text-sm">
           {" "}

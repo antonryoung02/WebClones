@@ -3,20 +3,24 @@ import AmazonButton from "./AmazonButton";
 import AmazonSearchbar from "./AmazonSearchbar";
 import { BsList } from "react-icons/bs";
 import { SiAmazon } from "react-icons/si";
-import { PiShoppingCart } from "react-icons/pi";
+import { BsCart } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import {useCart} from "../contexts/CartContext";
 
 function HeaderSection() {
   const f = () => {};
+  const {cart, getNumItems} = useCart();
+
   return (
     <div className="bg-emerald-800 h-auto w-full shadow-lg">
       <div className="flex flex-row p-3 gap-4 bg-gradient-to-r from-emerald-900 to-emerald-700">
         <SiAmazon size={40} color="white" />
         <AmazonSearchbar />
         <Link to="/cart">
-          <div className="flex flex-row items-end">
-            <PiShoppingCart size={40} color="white" />
+          <div className="flex flex-row items-end relative">
+            <BsCart size={40} color="white" />
             <p className="text-white font-bold text-sm">Cart</p>
+            <p className="text-white font-bold text-md absolute top-1.5 left-3">{(getNumItems())}</p>
           </div>
         </Link>
       </div>

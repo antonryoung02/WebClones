@@ -23,15 +23,18 @@ function ProductInCartCard(props) {
 
   return (
     <div>
-      <div className="flex flex-row px-8 py-4 items-center">
-        <input type="checkbox" />
-        <img
-          src={product.thumbnail}
-          alt={product.title}
-          className="h-60 w-auto"
-        />
+      <div className="flex flex-row px-8 py-4 h-64 items-center">
+      <input type="checkbox" />
+        <div className="w-1/3 h-full">
+          <img
+            src={product.thumbnail}
+            alt={product.title}
+            className="h-full w-auto"
+          />
+        </div>
+        <div className="flex flex-row justify-between w-2/3 h-full p-6">
         <div className="flex flex-col gap-1">
-          <p>{product.title}</p>
+          <p className="font-semibold">{product.title}</p>
           <InStockLabel stock={product.stock} />
           <p className="text-sm">
             FREE Delivery. {product.shippingInformation}
@@ -51,12 +54,15 @@ function ProductInCartCard(props) {
             </button>
           </div>
         </div>
-        <AmazonPriceText
-          showList={true}
-          showPaymentPlan={false}
-          price={product.price}
-          discount={product.discountPercentage}
-        />
+        <div className="flex flex-col items-end h-full">
+          <AmazonPriceText
+            showList={false}
+            showPaymentPlan={false}
+            price={product.price}
+            discount={product.discountPercentage}
+          />
+        </div>
+        </div>
       </div>
     </div>
   );

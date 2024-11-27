@@ -30,6 +30,13 @@ class ProductClient {
     return data;
   }
 
+  async getProductsWithTag(tag) {
+    const requestUrl = ProductClient.apiUrl + "/products/category/" + tag;
+    const response = await fetch(requestUrl);
+    const data = await this.#validateResponse(response, productSchema);
+    return data.products;
+  }
+
   async #validateResponse(response, schema) {
     if (!response.ok) {
       throw new Error(`Error with request!: ${response.status}`);
@@ -44,6 +51,7 @@ class ProductClient {
     }
     return data;
   }
+
 }
 
 export const productClient = new ProductClient();

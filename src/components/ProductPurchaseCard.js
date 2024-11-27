@@ -3,7 +3,7 @@ import AmazonPriceText from "../components/AmazonPriceText";
 import AmazonButton from "../components/AmazonButton";
 import AmazonDropdown from "../components/AmazonDropdown";
 import { BsChevronDown } from "react-icons/bs";
-
+import AddToCartButton from "./AddToCartButton";
 function ProductPurchaseCard(props) {
   const product = props.product;
   const [productCount, setProductCount] = useState(1);
@@ -40,7 +40,7 @@ checked:after:-translate-y-1/2 checked:after:w-2 checked:after:h-2 checked:after
         selectedIndex={productCount}
         setSelectedIndex={setProductCount}
       />
-      <AmazonButton buttonEnum="addToCart" />
+      <AddToCartButton id={product.id}/>
       <AmazonButton buttonEnum="buyNow" />
 
       <div className="flex flex-col gap-1 py-4">

@@ -8,6 +8,7 @@ import AddToCartButton from "./AddToCartButton";
 
 function ProductCard(props) {
   const product = props.product;
+  const type = props.type;
 
   const addToCart = (id) => {
     console.log(`Added item ${id}!`);
@@ -17,6 +18,50 @@ function ProductCard(props) {
     console.log(`Viewing item ${product.id}!`);
   };
 
+  if (type === "sm") {
+    // small product cards need flex-col with image, truncated title, price, shipping information
+    return  (
+      <div className="flex flex-col items-center h-[120] bg-white"> 
+             <img
+          className="w-full h-auto"
+          src={product.thumbnail}
+          alt={product.title}
+        ></img> 
+          <AmazonButton
+            func={viewItem}
+            args={[product]}
+            buttonEnum={"clickableText"}
+            innerHTML={
+              <Link to={`/product/${product.id}`} state={{ product: product }}>
+                <p className="text-md leading-tight hover:text-orange-700">
+                  {product.title}
+                </p>
+              </Link>
+            }
+          />
+          <div className="flex w-full gap-2 justify-center">
+            <StarRatings
+              rating={product.rating}
+              starRatedColor="orange"
+              numberOfStars={5}
+              starDimension="16"
+              starSpacing="1"
+              name="rating"
+            />
+            <p className="text-sky-700 text-sm">{product.reviews.length}</p>
+          </div>
+          <AmazonPriceText
+            price={product.price}
+            discount={product.discountPercentage}
+            showList={false}
+            showPaymentPlan={false}
+          />
+          <p className="text-sm">{product.shippingInformation}</p>
+          <AmazonStockWarning stock={product.stock} />
+          <AddToCartButton id={product.id} className={"w-24"} /> 
+      </div>
+    )
+  } else {
   return (
     <div className="h-64 w-full bg-white border-2 border-gray-200 rounded-md">
       <div className="flex h-full">
@@ -64,6 +109,7 @@ function ProductCard(props) {
       </div>
     </div>
   );
+}
 }
 
 export default ProductCard;

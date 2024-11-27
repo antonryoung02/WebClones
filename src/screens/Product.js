@@ -9,10 +9,14 @@ import { BsChevronDown } from "react-icons/bs";
 import ImageCollection from "../components/ImageCollection";
 import ProductInformation from "../components/ProductInformation";
 import ProductPurchaseCard from "../components/ProductPurchaseCard";
+import RelatedProducts from "../components/RelatedProducts";
+import ProductHistory from "../components/ProductHistory";
+import { browsingHistoryService } from "../services/BrowsingHistoryService";
 
 function Product(props) {
   const location = useLocation();
   const product = location.state.product;
+  browsingHistoryService.addProductToHistory(product.id);
 
   return (
     <div className="flex flex-col px-12 py-6 bg-white">
@@ -32,11 +36,13 @@ function Product(props) {
       <ReviewSection reviews={product.reviews} />
       <hr />
       <div>
-        <p className="font-semibold text-2xl">Related Products</p>
+        <p className="font-semibold text-2xl mt-4">Related Products</p>
+        <RelatedProducts product={product} />
       </div>
       <hr />
       <div>
-        <p className="font-semibold text-2xl">Recently Viewed</p>
+        <p className="font-semibold text-2xl mt-4">Recently Viewed</p>
+        <ProductHistory />
       </div>
     </div>
   );
