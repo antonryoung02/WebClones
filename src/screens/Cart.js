@@ -4,6 +4,7 @@ import { productClient } from "../api/ProductClient";
 import ProductInCartCard from "../components/ProductInCartCard";
 import Subtotal from "../components/Subtotal";
 import AmazonButton from "../components/AmazonButton";
+import ProductHistory from "../components/ProductHistory";
 
 function Cart() {
   const { cart, getNumItems, getSubtotal, clear, update } = useCart();
@@ -21,8 +22,9 @@ function Cart() {
   }, [cart]);
 
   return (
-    <div className="flex flex-col md:flex-row items-start justify-center bg-gray-100 ">
-      <div className="flex flex-col bg-white w-full lg:w-2/3 p-6 my-8 lg:ml-28 mr-5">
+    <div className="flex flex-col bg-gray-100 ">
+    <div className="flex flex-col md:flex-row items-start justify-center ">
+      <div className="flex flex-col bg-white w-full lg:w-2/3 p-6 my-8 lg:ml-28 mr-4">
         <p className="font-semibold text-2xl">Shopping Cart</p>
         <hr />
 
@@ -53,6 +55,11 @@ function Cart() {
           innerHTML={"Proceed to checkout"}
           className="w-full"
         />
+      </div>
+    </div>
+    <div className="m-8 bg-white">
+        <p className="font-semibold text-2xl m-4">Recently Viewed</p>
+        <ProductHistory />
       </div>
     </div>
   );
