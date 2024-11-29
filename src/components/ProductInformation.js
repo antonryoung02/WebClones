@@ -1,9 +1,11 @@
 import StarRatings from "react-star-ratings";
 import AmazonPriceText from "../components/AmazonPriceText";
-import { BsChevronDown } from "react-icons/bs";
+import FreeReturnsLabel from "./FreeReturnsLabel";
+import ReviewService from "../services/ReviewService";
 
 function ProductInformation(props) {
   const product = props.product;
+  const reviewService = new ReviewService(product.reviews);
 
   return (
     <div>
@@ -11,9 +13,9 @@ function ProductInformation(props) {
         {product.title} - {product.description}{" "}
       </p>
       <div className="flex w-full gap-2 items-end">
-        <p className="text-sm"> {product.rating} </p>
+        <p className="text-sm"> {reviewService.getMean()} </p>
         <StarRatings
-          rating={product.rating}
+          rating={reviewService.getMean()}
           starRatedColor="orange"
           numberOfStars={5}
           starDimension="16"
@@ -29,11 +31,8 @@ function ProductInformation(props) {
         discount={product.discountPercentage}
         price={product.price}
       />
-      <div className="flex flex-row gap-1 items-center">
-        <p className="text-sky-700 text-sm">FREE Returns</p>
-        <BsChevronDown style={{ strokeWidth: 1 }} />
-      </div>
-      <div className="pt-6">
+      <FreeReturnsLabel />
+      <div className="pt-3">
         <table>
           <tr>
             <td className="font-bold">Brand</td>

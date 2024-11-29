@@ -7,15 +7,16 @@ import { BsCart } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import {useCart} from "../contexts/CartContext";
 
-function HeaderSection() {
+function HeaderSection(props) {
   const f = () => {};
   const {cart, getNumItems} = useCart();
+  const searchbarRef = props.searchbarRef;
 
   return (
     <div className="bg-emerald-800 h-auto w-full shadow-lg">
       <div className="flex flex-row p-3 gap-4 bg-gradient-to-r from-emerald-900 to-emerald-700">
         <SiAmazon size={40} color="white" />
-        <AmazonSearchbar />
+        <AmazonSearchbar searchbarRef={searchbarRef}/>
         <Link to="/cart">
           <div className="flex flex-row items-end relative">
             <BsCart size={40} color="white" />

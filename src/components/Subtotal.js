@@ -6,8 +6,14 @@ function Subtotal(props) {
   return (
     <div>
       <div className="flex flex-row gap-1 text-xl">
-        <p>Subtotal: ({getNumItems()} items): </p>
-        <p className="font-semibold">${getSubtotal(products)}</p>
+        {products.length > 0 ?
+        <>
+          <p>Subtotal: ({getNumItems()} items): </p>
+          <p className="font-semibold">${getSubtotal(products)}</p>
+        </>
+        : 
+        <p>No items selected</p>
+}
       </div>
     </div>
   );

@@ -22,10 +22,14 @@ function Cart() {
   }, [cart]);
 
   return (
-    <div className="flex flex-col bg-gray-100 ">
+    <div className="flex flex-col bg-gray-200 ">
     <div className="flex flex-col md:flex-row items-start justify-center ">
-      <div className="flex flex-col bg-white w-full lg:w-2/3 p-6 my-8 lg:ml-28 mr-4">
-        <p className="font-semibold text-2xl">Shopping Cart</p>
+      <div className="flex flex-col bg-white w-full lg:w-2/3 p-4 my-8 lg:ml-28 mr-4">
+      <div className="flex flex-row justify-between items-end px-8 py-2">        
+        <p className="text-3xl">Shopping Cart</p>
+        <p>Price</p>
+        </div>
+
         <hr />
 
         {products.length > 0 ? (
@@ -33,7 +37,6 @@ function Cart() {
             <>
               <ProductInCartCard
                 key={product.id}
-
                 product={product}
                 count={cart[product.id]}
               />
@@ -41,10 +44,13 @@ function Cart() {
             </>
           ))
         ) : (
-          <p>Your cart is empty</p>
+          <p className="text-xl px-8 py-2">Your Amazon Cart is empty</p>
         )}
+        <div className="flex flex-row justify-end px-4 pt-4">
+        <Subtotal products={products} />
+        </div>
       </div>
-      <div className="bg-white w-full lg:w-1/3 p-6 my-8 lg:mr-28 ml-4">
+      <div className="bg-white w-full lg:w-1/3 p-4 my-8 lg:mr-28 ml-4">
         <Subtotal products={products} />
         <div className="flex flex-row gap-2 text-sm">
           {" "}
@@ -57,7 +63,7 @@ function Cart() {
         />
       </div>
     </div>
-    <div className="m-8 bg-white">
+      <div className="m-8 bg-white">
         <p className="font-semibold text-2xl m-4">Recently Viewed</p>
         <ProductHistory />
       </div>

@@ -1,26 +1,44 @@
-import { useState, useEffect } from "react";
-import { productClient } from "../api/ProductClient";
-import HeaderSection from "../components/HeaderSection";
+import { useState, useEffect, useRef } from "react";
 import FilterSection from "../components/FilterSection";
 import ResultSection from "../components/ResultSection";
+import PaginationSentinel from "../components/PaginationSentinel";
+import MoonLoader from "react-spinners/MoonLoader";
+import { throttle } from 'lodash';
+import {useProduct} from "../contexts/ProductContext";
 
-function Search() {
-  const [productMatches, setProductMatches] = useState([]);
+function Search(props) {
+  const [isLoading, setIsLoading] = useState(false);
+  const sentinelRef = useRef(null);
+  const {products, update, clear} = useProduct();
+  const searchbarRef = props.searchbarRef;
+
+  const callback = throttle( async() => {
+    if (!isLoading) {
+      await update(searchbarRef.current?.value || "");
+    }
+  }, 1000);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await productClient.getProducts();
-      setProductMatches(data.products);
+    const observer = new IntersectionObserver(callback);
+
+    if (sentinelRef.current) {
+      observer.observe(sentinelRef.current);
+    }
+    return () => {
+      observer.disconnect();
     };
-    fetchData();
-  }, []);
+  }, [])
+
+
   return (
     <div className="flex h-auto">
-      <div className="w-full h-full">
+      <div className="flex flex-col w-full h-full items-center">
         <div className="flex flex-col md:flex-row w-full h-full">
           <FilterSection />
-          <ResultSection results={productMatches} />
+          <ResultSection results={products} />
         </div>
+        <PaginationSentinel sentinelRef={sentinelRef}/>
+        <MoonLoader loading={isLoading} size={60} color={"#38b7d8"} />
       </div>
     </div>
   );

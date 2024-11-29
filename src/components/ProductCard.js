@@ -5,10 +5,13 @@ import AmazonPriceText from "./AmazonPriceText";
 import AmazonStockWarning from "./AmazonStockWarning";
 import { Link } from "react-router-dom";
 import AddToCartButton from "./AddToCartButton";
+import ReviewService from "../services/ReviewService";
+import Review from "./Review";
 
 function ProductCard(props) {
   const product = props.product;
   const type = props.type;
+  const reviewService = new ReviewService(props.product.reviews);
 
   const addToCart = (id) => {
     console.log(`Added item ${id}!`);
@@ -21,9 +24,9 @@ function ProductCard(props) {
   if (type === "sm") {
     // small product cards need flex-col with image, truncated title, price, shipping information
     return  (
-      <div className="flex flex-col items-center h-[120] bg-white"> 
+      <div className="flex flex-col items-center h-[108] bg-white"> 
              <img
-          className="w-full h-auto"
+          className="w-full h-auto px-4"
           src={product.thumbnail}
           alt={product.title}
         ></img> 
@@ -39,9 +42,9 @@ function ProductCard(props) {
               </Link>
             }
           />
-          <div className="flex w-full gap-2 justify-center">
+          <div className="flex w-full gap-2 justify-center items-end">
             <StarRatings
-              rating={product.rating}
+              rating={reviewService.getMean()}
               starRatedColor="orange"
               numberOfStars={5}
               starDimension="16"
@@ -87,7 +90,7 @@ function ProductCard(props) {
 
           <div className="flex w-full items-end gap-2">
             <StarRatings
-              rating={product.rating}
+              rating={reviewService.getMean()}
               starRatedColor="orange"
               numberOfStars={5}
               starDimension="16"

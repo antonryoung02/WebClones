@@ -2,8 +2,9 @@ import { useState } from "react";
 import AmazonPriceText from "../components/AmazonPriceText";
 import AmazonButton from "../components/AmazonButton";
 import AmazonDropdown from "../components/AmazonDropdown";
-import { BsChevronDown } from "react-icons/bs";
 import AddToCartButton from "./AddToCartButton";
+import FreeReturnsLabel from "./FreeReturnsLabel";
+
 function ProductPurchaseCard(props) {
   const product = props.product;
   const [productCount, setProductCount] = useState(1);
@@ -26,10 +27,7 @@ checked:after:-translate-y-1/2 checked:after:w-2 checked:after:h-2 checked:after
         discount={product.discountPercentage}
         price={product.price}
       />
-      <div className="flex flex-row gap-1 items-center">
-        <p className="text-sky-700 text-sm">FREE Returns</p>
-        <BsChevronDown style={{ strokeWidth: 1 }} />
-      </div>
+      <FreeReturnsLabel />
       <p className="text-sm">FREE Delivery. {product.shippingInformation}</p>
       {product.stock > 0 ? (
         <p className="text-lg text-green-700">In Stock</p>

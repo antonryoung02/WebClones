@@ -11,7 +11,7 @@ function ResultSection(props) {
           Check each product page for other buying options.
         </p>
       </div>
-      {results.map((result) => (
+      {results.map((result, index) => (
         <ProductCard key={result.id} product={result} />
       ))}
     </div>

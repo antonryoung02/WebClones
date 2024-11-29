@@ -16,8 +16,8 @@ function AmazonButton(props) {
     buyNow: "Buy now",
   };
 
-  const func = props.func;
-  const args = props.args;
+  const func = props.func || (() => {});
+  const args = props.args || [];
   const buttonEnum = props.buttonEnum;
   const innerHTML = props.innerHTML || enumText[buttonEnum];
   const className = props.className;

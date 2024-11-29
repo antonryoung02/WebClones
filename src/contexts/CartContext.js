@@ -32,16 +32,19 @@ export const CartProvider = ({children}) => {
         }
         return count;
       }
+
+      function getNumItemsWithId(id) {
+        return cart[id];
+      }
     
       function getSubtotal(products) {
         let cost = 0;
         products.forEach((p) => {
-          cost +=
-            Math.round(
-              100 * p.price * (1 - p.discountPercentage * 0.01) * cart[p.id]
-            ) / 100;
+          if (p.id in cart) {
+            cost += p.price * (1 - p.discountPercentage * 0.01) * cart[p.id];
+          }
         });
-        return cost;
+        return Math.round(100 * cost) / 100;
       }
     
       function update(id, count) {
@@ -62,6 +65,7 @@ export const CartProvider = ({children}) => {
         cart,
         clear,
         getNumItems,
+        getNumItemsWithId,
         getSubtotal,
         update,
     }

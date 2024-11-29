@@ -12,10 +12,11 @@ class ReviewService {
   }
 
   getMean() {
-    return (
+    let avg = (
       this.reviews.reduce((sum, review) => sum + review.rating, 0) /
       this.reviews.length
     );
+    return Math.round(100 * avg) / 100;
   }
 
   getReviewDistribution() {

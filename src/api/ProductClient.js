@@ -3,6 +3,7 @@ const Ajv = require("ajv");
 
 class ProductClient {
   static apiUrl = "https://dummyjson.com";
+  static limit = 10;
 
   constructor() {
     this.responseValidator = new Ajv();
@@ -16,15 +17,14 @@ class ProductClient {
         response,
         productSchema.properties.products.items
       );
-      console.log(` got product with id ${id}: ${JSON.stringify(data)}`);
       return data;
     } catch {
       console.log(`error fetching product with id ${id}`);
     }
   }
 
-  async getProducts() {
-    const requestUrl = ProductClient.apiUrl + "/products";
+  async getProducts(offset, searchQuery) {
+    const requestUrl = ProductClient.apiUrl + "/products/search?q=" + searchQuery + "&limit=" + ProductClient.limit + "&skip=" + (offset * ProductClient.limit);
     const response = await fetch(requestUrl);
     const data = await this.#validateResponse(response, productSchema);
     return data;
