@@ -1,13 +1,14 @@
 import {useState, useEffect} from "react";
 import {productClient} from "../api/ProductClient";
 import ProductCard from "./ProductCard";
+import ImageCarousel from "./ImageCarousel";
 
 function RelatedProducts(props) {
 
     // Queries ProductClient for products with the same tag as the current product.
     const product = props.product;
     const [relatedProducts, setRelatedProducts] = useState([]);
-    console.log(`Got ${relatedProducts.length} related products`);
+    const [index, setIndex] = useState(0);
 
     useEffect(() => {
         const getRelatedProducts = async() => {
@@ -15,8 +16,8 @@ function RelatedProducts(props) {
                 setRelatedProducts([]);
             } else {
             const result = await productClient.getProductsWithTags(product.tags);
-            console.log(`Got related products ${JSON.stringify(result)}`)
-            setRelatedProducts(result);
+            const resultWithoutProduct = result.filter((p) => p.id !== product.id);
+            setRelatedProducts(resultWithoutProduct);
             }
         }
 
@@ -24,11 +25,11 @@ function RelatedProducts(props) {
     }, [])
 
     return (
-        <div className="flex flex-row gap-2">
-          {relatedProducts.filter((p) => p.id !== product.id).map((product) => (
+        <ImageCarousel index={index} setIndex={setIndex} itemsPerPage={4} numItems={relatedProducts.length} title="Related Products">
+          {relatedProducts.slice(index, index+4).map((product) => (
             <ProductCard key={product.id} product={product} type="sm" />
           ))}
-        </div>
+        </ImageCarousel>
       );
 
 }

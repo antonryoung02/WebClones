@@ -2,18 +2,24 @@ import React, {useRef} from "react";
 import { BsSearch } from "react-icons/bs";
 import {useProduct} from "../contexts/ProductContext";
 import { BsCaretDownFill } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function AmazonSearchbar(props) {
   const {products, clear, update} = useProduct();
-  const searchbarRef = props.searchbarRef;
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
   const navigate = useNavigate();
+  const searchbarRef = useRef(null);
 
 
   function handleSubmit() {
     const queryText = searchbarRef?.current?.value || "";
     clear();
     if (queryText) {
+      navigate(`/?q=${queryText}`);
+
+    }
+    else {
       navigate(`/`);
     }
   }

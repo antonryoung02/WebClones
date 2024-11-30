@@ -15,8 +15,12 @@ class BrowsingHistoryService {
       }
 
     getHistory() {
-        const history = this.history.slice(0,-1)
-        return history.reverse();
+        return this.history.reverse();
+    }
+
+    clear() {
+        this.history = [];
+        this.#writeToLocalStorage(); 
     }
 
     addProductToHistory(id) { 

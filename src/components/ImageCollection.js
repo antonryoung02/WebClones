@@ -9,6 +9,7 @@ function ImageCollection(props) {
       <div className="flex flex-col items-center lg:items-end bg-white w-2/5 py-12">
         {images.map((image, index) => (
           <button
+            key={index}
             onMouseEnter={() => setImageIndex(index)}
             className="border-separate border-2 border-transparent hover:border-sky-700  hover:rounded-md"
           >

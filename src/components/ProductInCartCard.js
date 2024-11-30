@@ -31,11 +31,11 @@ function ProductInCartCard(props) {
         <input 
             type="checkbox" 
             checked={true} 
-            id="custom-checkbox" 
+            id="a-checkbox" 
             className="peer w-4 h-4 appearance-none border-2 border-gray-400 checked:border-cyan-700 checked:bg-cyan-700" 
         />
         <label 
-            for="custom-checkbox" 
+            htmlFor="a-checkbox" 
             className="absolute bottom-0.5 left-0 w-full h-full flex items-center justify-center text-white text-xs font-bold opacity-0 peer-checked:opacity-100">
             ✓
         </label>

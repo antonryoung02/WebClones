@@ -9,17 +9,16 @@ function ReviewSection(props) {
 
   return (
     <div className="flex flex-col lg:flex-row w-full py-12 gap-12 lg:px-16 lg:gap-32">
-      <div className="w-full lg:w-1/4">
+      <div className="flex flex-col w-full lg:w-1/4 gap-6">
+      <p className="text-2xl font-bold ">Customer Reviews</p>
         <ReviewDistribution
-          distribution={reviewService.getReviewDistribution()}
-          reviewCount={reviewService.getReviewCount()}
-          averageRating={reviewService.getMean()}
+         reviewService={reviewService} 
         />
       </div>
       <div className="flex flex-col w-full lg:w-2/3 gap-6">
         <p className="font-bold text-lg">Top Reviews </p>
-        {reviews.map((r) => (
-          <Review review={r} />
+        {reviews.map((r, i) => (
+          <Review key={i} review={r} />
         ))}
       </div>
     </div>

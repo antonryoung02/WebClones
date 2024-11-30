@@ -1,22 +1,31 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef} from "react";
 import FilterSection from "../components/FilterSection";
 import ResultSection from "../components/ResultSection";
 import PaginationSentinel from "../components/PaginationSentinel";
 import MoonLoader from "react-spinners/MoonLoader";
 import { throttle } from 'lodash';
 import {useProduct} from "../contexts/ProductContext";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Search(props) {
   const [isLoading, setIsLoading] = useState(false);
   const sentinelRef = useRef(null);
   const {products, update, clear} = useProduct();
-  const searchbarRef = props.searchbarRef;
+  const location = useLocation();
+  const locationRef = useRef(location);
 
   const callback = throttle( async() => {
     if (!isLoading) {
-      await update(searchbarRef.current?.value || "");
+      const queryParams = new URLSearchParams(locationRef.current.search);
+      const searchQuery = queryParams.get("q");
+      await update(searchQuery || "");
     }
   }, 1000);
+
+
+  useEffect(() => {
+    locationRef.current = location;
+}, [location]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(callback);
@@ -27,7 +36,7 @@ function Search(props) {
     return () => {
       observer.disconnect();
     };
-  }, [])
+  }, [location])
 
 
   return (

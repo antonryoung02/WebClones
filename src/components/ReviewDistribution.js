@@ -2,13 +2,13 @@ import ReviewBar from "./ReviewBar";
 import StarRatings from "react-star-ratings";
 
 function ReviewDistribution(props) {
-  const distribution = props.distribution;
-  const count = props.reviewCount;
-  const averageRating = Math.round(100 * props.averageRating) / 100;
+  const reviewService = props.reviewService;
+  const distribution = reviewService.getReviewDistribution();
+  const count = reviewService.getReviewCount();
+  const averageRating = reviewService.getMean();
 
   return (
-    <div className="flex flex-col gap-3">
-      <p className="text-2xl font-bold ">Customer Reviews</p>
+    <div className="flex flex-col gap-3 w-72">
       <div className="flex flex-row gap-2">
       <StarRatings
               rating={averageRating}

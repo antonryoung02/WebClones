@@ -12,17 +12,15 @@ import ScrollToTop from "./ScrollToTop";
 
 function App() {
 
-  const searchbarRef = useRef(null);
-
   return (
     <div>
       <ProductProvider>
         <CartProvider>
         <BrowserRouter>
-          <HeaderSection searchbarRef={searchbarRef}/>
+          <HeaderSection />
           <ScrollToTop />
           <Routes>
-            <Route path="/" element={<Search searchbarRef={searchbarRef}/>} />
+            <Route path="/" element={<Search />} />
             <Route path="/product/:product_id" element={<Product />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>

@@ -1,17 +1,19 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 import AmazonButton from "./AmazonButton";
 import StarRatings from "react-star-ratings";
 import AmazonPriceText from "./AmazonPriceText";
 import AmazonStockWarning from "./AmazonStockWarning";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AddToCartButton from "./AddToCartButton";
 import ReviewService from "../services/ReviewService";
 import Review from "./Review";
+import ReviewDistributionModal from "./ReviewDistributionModal";
 
 function ProductCard(props) {
   const product = props.product;
   const type = props.type;
-  const reviewService = new ReviewService(props.product.reviews);
+  const reviewService = new ReviewService(product?.reviews || []);
+  const navigate = useNavigate();
 
   const addToCart = (id) => {
     console.log(`Added item ${id}!`);
@@ -21,10 +23,11 @@ function ProductCard(props) {
     console.log(`Viewing item ${product.id}!`);
   };
 
+
   if (type === "sm") {
     // small product cards need flex-col with image, truncated title, price, shipping information
     return  (
-      <div className="flex flex-col items-center h-[108] bg-white"> 
+      <div className="flex flex-col items-center h-[108] w-64 bg-white"> 
              <img
           className="w-full h-auto px-4"
           src={product.thumbnail}
@@ -43,17 +46,17 @@ function ProductCard(props) {
               </Link>
             }
           />
-          <div className="flex w-full gap-2 justify-center items-end">
-            <StarRatings
-              rating={reviewService.getMean()}
-              starRatedColor="orange"
-              numberOfStars={5}
-              starDimension="16"
-              starSpacing="1"
-              name="rating"
-            />
-            <p className="text-sky-700 text-sm">{product.reviews.length}</p>
-          </div>
+          <button className="flex flex-row items-end gap-2" onClick={() => navigate(`/product/${product.id}#reviews`)}>
+          <StarRatings
+            rating={reviewService.getMean()}
+            starRatedColor="orange"
+            numberOfStars={5}
+            starDimension="16"
+            starSpacing="1"
+            name="rating"
+          />
+          <p className="text-sky-700 text-sm">{reviewService.getReviewCount()}</p>
+        </button>
           <AmazonPriceText
             price={product.price}
             discount={product.discountPercentage}
@@ -89,17 +92,7 @@ function ProductCard(props) {
             }
           />
 
-          <div className="flex w-full items-end gap-2">
-            <StarRatings
-              rating={reviewService.getMean()}
-              starRatedColor="orange"
-              numberOfStars={5}
-              starDimension="16"
-              starSpacing="1"
-              name="rating"
-            />
-            <p className="text-sky-700 text-sm">{product.reviews.length}</p>
-          </div>
+          <ReviewDistributionModal reviewService={reviewService} productId={product.id}/>
           <AmazonPriceText
             price={product.price}
             discount={product.discountPercentage}

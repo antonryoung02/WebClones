@@ -6,18 +6,34 @@ import ProductPurchaseCard from "../components/ProductPurchaseCard";
 import RelatedProducts from "../components/RelatedProducts";
 import ProductHistory from "../components/ProductHistory";
 import { browsingHistoryService } from "../services/BrowsingHistoryService";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
+import {productClient} from "../api/ProductClient";
 
 function Product() {
   const location = useLocation();
-  const product = location.state.product;
+  const {product_id} = useParams();
+  const [product, setProduct] = useState(null);
 
-  
   useEffect(() => {
-    if (product?.id) {
-      browsingHistoryService.addProductToHistory(product.id);
+    if (location.hash) {
+      const targetElement = document.querySelector(location.hash);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
     }
   }, [product]);
+  
+  useEffect(() => {
+      browsingHistoryService.addProductToHistory(product_id);
+
+      const getProduct = async() => {
+        const result = await productClient.getProductWithId(product_id);
+        setProduct(result);
+      }
+
+      getProduct();
+  }, [product_id]);
 
   if (!product) {
     return (
@@ -43,17 +59,13 @@ function Product() {
           </div>
         </div>
       </div>
+      <div id="reviews">
       <ReviewSection reviews={product.reviews} />
+      </div>
       <hr />
-      <div>
-        <p className="font-semibold text-2xl mt-4">Related Products</p>
         <RelatedProducts product={product} />
-      </div>
       <hr />
-      <div>
-        <p className="font-semibold text-2xl mt-4">Your Browsing History</p>
         <ProductHistory />
-      </div>
     </div>
   );
 }
