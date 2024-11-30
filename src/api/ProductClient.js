@@ -30,11 +30,17 @@ class ProductClient {
     return data;
   }
 
-  async getProductsWithTag(tag) {
-    const requestUrl = ProductClient.apiUrl + "/products/category/" + tag;
-    const response = await fetch(requestUrl);
-    const data = await this.#validateResponse(response, productSchema);
-    return data.products;
+  async getProductsWithTags(tags) {
+  
+    const productPromises = tags.map(async (tag) => {
+      const requestUrl = `${ProductClient.apiUrl}/products/category/${tag}`;
+      const response = await fetch(requestUrl);
+      const data = await this.#validateResponse(response, productSchema);
+      return data.products; 
+    });
+  
+    const allProducts = (await Promise.all(productPromises)).flat();
+    return allProducts;
   }
 
   async #validateResponse(response, schema) {

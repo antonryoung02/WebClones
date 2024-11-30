@@ -6,22 +6,26 @@ import { SiAmazon } from "react-icons/si";
 import { BsCart } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import {useCart} from "../contexts/CartContext";
+import { useNavigate } from "react-router-dom";
 
 function HeaderSection(props) {
   const f = () => {};
   const {cart, getNumItems} = useCart();
   const searchbarRef = props.searchbarRef;
+  const navigate = useNavigate()
 
   return (
     <div className="bg-emerald-800 h-auto w-full shadow-lg">
       <div className="flex flex-row p-3 gap-4 bg-gradient-to-r from-emerald-900 to-emerald-700">
-        <SiAmazon size={40} color="white" />
+        <button onClick={() => navigate('/')}><SiAmazon size={40} color="white" /></button>
         <AmazonSearchbar searchbarRef={searchbarRef}/>
         <Link to="/cart">
-          <div className="flex flex-row items-end relative">
+        <div className="flex flex-row items-end">
+          <div className="relative inline-block">
             <BsCart size={40} color="white" />
-            <p className="text-white font-bold text-sm">Cart</p>
-            <p className="text-white font-bold text-md absolute top-1.5 left-3">{(getNumItems())}</p>
+            <p className="text-white font-bold absolute inset-0 flex items-center justify-center mb-1">{(getNumItems())}</p>
+          </div>
+          <p className="text-white font-bold text-sm">Cart</p>
           </div>
         </Link>
       </div>
@@ -29,8 +33,8 @@ function HeaderSection(props) {
         <AmazonButton
           buttonEnum="navigation"
           innerHTML={
-            <div className="flex items-center gap-2">
-              <BsList size={20} />
+            <div className="flex items-center gap-1">
+              <BsList size={20} style={{ strokeWidth:1 }}/>
               <p>All</p>
             </div>
           }

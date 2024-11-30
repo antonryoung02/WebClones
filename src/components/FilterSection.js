@@ -5,7 +5,7 @@ import AmazonFilterSubsection from "./AmazonFilterSubsection";
 
 function FilterSection() {
   return (
-    <div className="bg-white h-80 w-full md:w-1/5 md:h-full">
+    <div className="bg-white h-80 w-full py-4 md:w-1/5 md:h-full">
       <AmazonFilterSubsection title="By Category" options={["Category 1"]} />
       <AmazonFilterSubsection
         title="Customer Reviews"

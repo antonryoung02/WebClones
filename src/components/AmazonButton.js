@@ -7,8 +7,8 @@ function AmazonButton(props) {
     buyNow:
       "bg-orange-400 rounded-2xl text-xs p-2 text-center hover:bg-orange-500",
     navigation:
-      "min-w-24 h-10 bg-emerald-800 rounded-sm align-middle text-sm p-2 text-center text-white border-transparent hover:border-white border-2",
-    clickableText: "text-left",
+      "min-w-12 mx-1 h-10 bg-emerald-800 rounded-sm font-semibold align-middle text-sm p-2 text-center text-white border-transparent hover:border-white border-2",
+    clickableText: "text-left text-xl",
   };
 
   const enumText = {

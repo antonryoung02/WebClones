@@ -6,7 +6,7 @@ function ImageCollection(props) {
 
   return (
     <div className="flex flex-row w-full items-start sticky top-0">
-      <div className="flex flex-col items-end bg-white w-2/5 py-12">
+      <div className="flex flex-col items-center lg:items-end bg-white w-2/5 py-12">
         {images.map((image, index) => (
           <button
             onMouseEnter={() => setImageIndex(index)}

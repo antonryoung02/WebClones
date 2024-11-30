@@ -28,7 +28,7 @@ function FreeReturnsLabel() {
         <button onClick={() => setModalVisible(!modalVisible)}>
             <div className="flex flex-row gap-1 items-center">
                 <p className="text-sky-700 text-sm">FREE Returns</p>
-                <BsChevronDown style={{ strokeWidth: 1 }} />
+                <BsChevronDown size={14} style={{ strokeWidth: 1 }} />
             </div>
         </button>
 

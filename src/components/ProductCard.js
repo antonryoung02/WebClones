@@ -34,9 +34,10 @@ function ProductCard(props) {
             func={viewItem}
             args={[product]}
             buttonEnum={"clickableText"}
+            className="text-center"
             innerHTML={
               <Link to={`/product/${product.id}`} state={{ product: product }}>
-                <p className="text-md leading-tight hover:text-orange-700">
+                <p className="text-md leading-tight hover:text-orange-700  line-clamp-2">
                   {product.title}
                 </p>
               </Link>
@@ -66,10 +67,10 @@ function ProductCard(props) {
     )
   } else {
   return (
-    <div className="h-64 w-full bg-white border-2 border-gray-200 rounded-md">
+    <div className="h-72 w-full bg-white border-[1px] border-gray-200 rounded-sm">
       <div className="flex h-full">
         <img
-          className="bg-gray-50 h-full"
+          className="bg-gray-50 h-full w-auto"
           src={product.thumbnail}
           alt={product.title}
         ></img>
@@ -105,7 +106,7 @@ function ProductCard(props) {
             showList={true}
             showPaymentPlan={true}
           />
-          <p className="text-sm">{product.shippingInformation}</p>
+          <p className="text-sm">FREE Delivery. {product.shippingInformation}</p>
           <AmazonStockWarning stock={product.stock} />
           <AddToCartButton id={product.id} className={"w-24"} />
         </div>

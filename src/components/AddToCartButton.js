@@ -10,12 +10,12 @@ function AddToCartButton(props) {
   return (
     <button
       className={
-        "bg-yellow-300 rounded-2xl text-xs p-2 my-4 text-center hover:bg-yellow-400 " +
+        "bg-yellow-300 rounded-2xl text-xs p-2 my-2 text-center hover:bg-yellow-400 " +
         className
       }
       onClick={() => update(id, 1)}
     >
-      Add to cart
+      <p className="text-md">Add to cart</p>
     </button>
   );
 }

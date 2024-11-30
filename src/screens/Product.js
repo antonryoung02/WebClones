@@ -29,8 +29,8 @@ function Product() {
   }
 
   return (
-    <div className="flex flex-col px-12 py-6 bg-white">
-      <div className="flex lg:flex-row justify-center flex-col w-full h-full">
+    <div className="flex flex-col p-6 bg-white">
+      <div className="flex lg:flex-row flex-col w-full h-full">
         <div className="w-full lg:w-1/3">
           <ImageCollection product={product} />
         </div>
@@ -51,7 +51,7 @@ function Product() {
       </div>
       <hr />
       <div>
-        <p className="font-semibold text-2xl mt-4">Recently Viewed</p>
+        <p className="font-semibold text-2xl mt-4">Your Browsing History</p>
         <ProductHistory />
       </div>
     </div>

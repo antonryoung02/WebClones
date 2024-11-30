@@ -8,7 +8,7 @@ function ReviewDistribution(props) {
 
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-lg font-bold ">Customer Reviews</p>
+      <p className="text-2xl font-bold ">Customer Reviews</p>
       <div className="flex flex-row gap-2">
       <StarRatings
               rating={averageRating}

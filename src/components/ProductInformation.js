@@ -9,7 +9,7 @@ function ProductInformation(props) {
 
   return (
     <div>
-      <p className="font-semibold text-2xl">
+      <p className=" text-2xl">
         {product.title} - {product.description}{" "}
       </p>
       <div className="flex w-full gap-2 items-end">

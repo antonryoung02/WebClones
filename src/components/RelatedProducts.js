@@ -14,7 +14,7 @@ function RelatedProducts(props) {
             if (product.tags.length === 0) {
                 setRelatedProducts([]);
             } else {
-            const result = await productClient.getProductsWithTag(product.tags[0]);
+            const result = await productClient.getProductsWithTags(product.tags);
             console.log(`Got related products ${JSON.stringify(result)}`)
             setRelatedProducts(result);
             }

@@ -3,15 +3,15 @@ function InStockLabel(props) {
   const className = props.className;
 
   if (stock > 10) {
-    return <p className={`text-green-500 ${className}`}>In Stock</p>;
+    return <p className={`text-emerald-600 text-xs ${className}`}>In Stock</p>;
   } else if (stock > 0) {
     return (
-      <p className={`text-red-500 ${className}`}>
+      <p className={`text-red-600 text-xs ${className}`}>
         Only {stock} left, order soon
       </p>
     );
   } else {
-    <p className={`text-red-500 ${className}`}>Out of Stock</p>;
+    <p className={`text-red-600 text-xs ${className}`}>Out of Stock</p>;
   }
 }
 

@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'EmberLight'; /* The name you'll reference in Tailwind */
+    src: url('./assets/Ember/AmazonEmber_Rg.ttf'); /* Path to your font file */
+  }
+
+  @font-face {
+    font-family: 'EmberMedium'; /* The name you'll reference in Tailwind */
+    src: url('./assets/Ember/Amazon-Ember-Medium.ttf'); /* Path to your font file */
+  } 
+
+  @font-face {
+    font-family: 'EmberBold'; /* The name you'll reference in Tailwind */
+    src: url('./assets/Ember/AmazonEmber_Bd.ttf'); /* Path to your font file */
+  }

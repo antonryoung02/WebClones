@@ -8,7 +8,7 @@ function ReviewSection(props) {
   const [reviews, setReviews] = useState(reviewService.getReviews());
 
   return (
-    <div className="flex flex-col lg:flex-row lg:px-52 w-full py-12 gap-8 lg:gap-20">
+    <div className="flex flex-col lg:flex-row w-full py-12 gap-12 lg:px-16 lg:gap-32">
       <div className="w-full lg:w-1/4">
         <ReviewDistribution
           distribution={reviewService.getReviewDistribution()}
