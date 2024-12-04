@@ -10,7 +10,22 @@ import { Link } from "react-router-dom";
 
 function ProductInCartCard(props) {
   const product = props.product;
+  const setPurchaseProducts = props.setPurchaseProducts;
+  const [checked, setChecked] = useState(true);
   const { cart, getNumItems, getNumItemsWithId, getSubtotal, clear, update } = useCart();
+
+  useEffect(() => {
+    setPurchaseProducts(prev => {
+      let updatedProducts = prev;
+
+      if (checked) {
+        updatedProducts = updatedProducts.filter(p => p.id !== product.id);
+        return [...updatedProducts, product];
+      } else {
+        return updatedProducts.filter(p => p.id !== product.id);
+      }
+    });
+  }, [checked]);
 
   const incrementCount = () => {
     update(product.id, 1);
@@ -27,20 +42,26 @@ function ProductInCartCard(props) {
   return (
     <div>
       <div className="flex flex-row px-8 py-4 h-64 items-center">
-      <div class="relative">
-        <input 
-            type="checkbox" 
-            checked={true} 
-            id="a-checkbox" 
-            className="peer w-4 h-4 appearance-none border-2 border-gray-400 checked:border-cyan-700 checked:bg-cyan-700" 
-        />
-        <label 
-            htmlFor="a-checkbox" 
-            className="absolute bottom-0.5 left-0 w-full h-full flex items-center justify-center text-white text-xs font-bold opacity-0 peer-checked:opacity-100">
-            ✓
-        </label>
+      <div class="relative px-8">
+      <input 
+        type="checkbox" 
+        checked={checked} 
+        id={product.id}
+        onChange={() => setChecked(prev => !prev)} 
+        className={`peer w-4 h-4 appearance-none border-2 border-gray-400 ${
+            checked 
+                && "checked:border-cyan-700 checked:bg-cyan-700" 
+        }`} 
+      />
+      <label 
+          htmlFor={product.id}
+          className={`absolute bottom-0.5 left-0 w-full h-full flex items-center justify-center text-white text-xs font-bold ${
+              checked ? "opacity-100" : "opacity-50 text-red-500"
+          }`}>
+          {checked && "✓"}
+      </label>
     </div>
-        <div className="h-full">
+        <div className="h-full p-2">
         <img
           src={product.thumbnail}
           alt={product.title}

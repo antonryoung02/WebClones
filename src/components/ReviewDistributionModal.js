@@ -14,7 +14,7 @@ function ReviewDistributionModal(props) {
 
     return (
         <div className=" gap-2 relative" ref={reviewRef}>
-        <button className="flex flex-row items-end gap-2" onClick={() => setReviewModalVisible(!reviewModalVisible)}>
+        <button className="flex flex-row items-end gap-2" onMouseEnter={() => setReviewModalVisible(true)}>
           <StarRatings
             rating={reviewService.getMean()}
             starRatedColor="orange"

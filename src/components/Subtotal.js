@@ -8,7 +8,7 @@ function Subtotal(props) {
       <div className="flex flex-row gap-1 text-xl">
         {products.length > 0 ?
         <>
-          <p className="">Subtotal ({getNumItems()} items): </p>
+          <p className="">Subtotal ({getNumItems(products)} items): </p>
           <p className="font-bold">${getSubtotal(products)}</p>
         </>
         : 

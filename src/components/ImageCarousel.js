@@ -16,7 +16,7 @@ function ImageCarousel(props) {
     }
 
     return (
-        <div>
+        <div className="h-[466px]">
             <div className="flex flex-row justify-between items-center p-4">
             <p className="font-semibold text-2xl">{title}</p>
             <p>Page {Math.ceil(index / itemsPerPage) + 1} of {Math.ceil( (numItems) / itemsPerPage)}</p>

@@ -24,7 +24,7 @@ function Modal({modalRef, isVisible, setIsVisible, children}) {
     }
 
     return ( 
-        <div className="flex flex-col absolute top-full bg-white border-[1.5px] border-gray-200 rounded-lg z-10 p-3 ">
+        <div className="flex flex-col absolute top-full bg-white border-[1.5px] border-gray-200 rounded-lg z-10 p-3 " onMouseLeave={() => setIsVisible(false)}>
             {children}
         </div>
     )

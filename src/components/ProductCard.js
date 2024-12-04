@@ -28,11 +28,13 @@ function ProductCard(props) {
     // small product cards need flex-col with image, truncated title, price, shipping information
     return  (
       <div className="flex flex-col items-center h-[108] w-64 bg-white"> 
-             <img
-          className="w-full h-auto px-4"
+      <div className="w-full h-[224px] ">
+        <img
+          className="w-full h-full px-4"
           src={product.thumbnail}
           alt={product.title}
-        ></img> 
+        />
+        </div>
           <AmazonButton
             func={viewItem}
             args={[product]}

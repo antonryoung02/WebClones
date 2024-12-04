@@ -1,4 +1,5 @@
 import { productSchema } from "./ProductSchema";
+import {categorySchema } from "./CategorySchema";
 const Ajv = require("ajv");
 
 class ProductClient {
@@ -23,10 +24,24 @@ class ProductClient {
     }
   }
 
-  async getProducts(offset, searchQuery) {
-    const requestUrl = ProductClient.apiUrl + "/products/search?q=" + searchQuery + "&limit=" + ProductClient.limit + "&skip=" + (offset * ProductClient.limit);
+  async getProducts(offset, searchQuery, category) {
+    // Unfortunately I can't search AND filter by category.
+    let queryString = "";
+    if (category) {
+      queryString = "/category/" + category + "?limit=" + ProductClient.limit + "&skip=" + (offset * ProductClient.limit); 
+    } else {
+      queryString = "/search?q=" + searchQuery + "&limit=" + ProductClient.limit + "&skip=" + (offset * ProductClient.limit); 
+    }
+    const requestUrl = ProductClient.apiUrl + "/products" + queryString;
     const response = await fetch(requestUrl);
     const data = await this.#validateResponse(response, productSchema);
+    return data;
+  }
+
+  async getCategories() {
+    const requestUrl = ProductClient.apiUrl + '/products/category-list';
+    const response = await fetch(requestUrl);
+    const data = await this.#validateResponse(response, categorySchema);
     return data;
   }
 

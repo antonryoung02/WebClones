@@ -4,6 +4,7 @@ import AmazonButton from "../components/AmazonButton";
 import AmazonDropdown from "../components/AmazonDropdown";
 import AddToCartButton from "./AddToCartButton";
 import FreeReturnsLabel from "./FreeReturnsLabel";
+import GoToCheckoutButton from "./GoToCheckoutButton";
 
 function ProductPurchaseCard(props) {
   const product = props.product;
@@ -39,7 +40,7 @@ checked:after:-translate-y-1/2 checked:after:w-2 checked:after:h-2 checked:after
         setSelectedIndex={setProductCount}
       />
       <AddToCartButton id={product.id}/>
-      <AmazonButton buttonEnum="buyNow" />
+      <GoToCheckoutButton products={[[product, 1]]} title="Buy now"/>
 
       <div className="flex flex-col gap-1 py-4">
         <div className="flex flex-row items-center gap-4">

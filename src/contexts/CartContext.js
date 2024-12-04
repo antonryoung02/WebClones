@@ -24,8 +24,22 @@ export const CartProvider = ({children}) => {
         setCart({});
         writeToLocalStorage({});
       }
+
+      function getNumItems(products) {
+        console.log(products)
+        let count = 0;
+        for (const i in products) {
+          if (products[i].id in cart) {
+            count += cart[products[i].id];
+          } else {
+            console.log(`${products[i].id} not found in cart`)
+            count += 1;
+          }
+        }
+        return count;
+      }
     
-      function getNumItems() {
+      function getNumItemsInCart() {
         let count = 0;
         for (const key in cart) {
           count += cart[key];
@@ -48,23 +62,26 @@ export const CartProvider = ({children}) => {
       }
     
       function update(id, count) {
-        let updatedCart = {... cart};
-        if (id in updatedCart) {
-          updatedCart[id] += count;
-        } else {
-          updatedCart[id] = count;
-        }
-        if (updatedCart[id] <= 0) {
-          delete updatedCart[id];
-        }
-        setCart(updatedCart)
-        writeToLocalStorage(updatedCart);
+        setCart((prevCart) => {
+          let updatedCart = { ...prevCart };
+          if (id in updatedCart) {
+            updatedCart[id] += count;
+          } else if (count > 0) {
+            updatedCart[id] = count;
+          }
+          if (updatedCart[id] <= 0) {
+            delete updatedCart[id];
+          }
+          writeToLocalStorage(updatedCart);
+          return updatedCart;
+        });
       }
 
     const exportValues = {
         cart,
         clear,
         getNumItems,
+        getNumItemsInCart,
         getNumItemsWithId,
         getSubtotal,
         update,

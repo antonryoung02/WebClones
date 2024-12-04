@@ -4,11 +4,16 @@ import { productClient } from "../api/ProductClient";
 import ProductInCartCard from "../components/ProductInCartCard";
 import Subtotal from "../components/Subtotal";
 import AmazonButton from "../components/AmazonButton";
+import GoToCheckoutButton from "../components/GoToCheckoutButton";
 import ProductHistory from "../components/ProductHistory";
+import {useNavigate} from "react-router-dom";
 
 function Cart() {
   const { cart, getNumItems, getSubtotal, clear, update } = useCart();
   const [products, setProducts] = useState([]);
+  const [purchaseProducts, setPurchaseProducts] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchProducts = async () => {
       const productPromises = Object.keys(cart).map((id) =>
@@ -39,6 +44,7 @@ function Cart() {
                 key={product.id}
                 product={product}
                 count={cart[product.id]}
+                setPurchaseProducts={setPurchaseProducts}
               />
               <hr />
             </>
@@ -47,18 +53,18 @@ function Cart() {
           <p className="text-xl px-8 py-2">Your Amazon Cart is empty</p>
         )}
         <div className="flex flex-row justify-end px-4 pt-4">
-        <Subtotal products={products} />
+        <Subtotal products={purchaseProducts} />
         </div>
       </div>
       <div className="bg-white w-full lg:w-1/3 p-4 my-8 lg:mr-28 m-4">
-        <Subtotal products={products} />
+        <Subtotal products={purchaseProducts} />
         <div className="flex flex-row gap-2 text-sm pt-2">
           <input type="checkbox" /> <p>This order contains a gift</p>
         </div>
-        <AmazonButton
-          buttonEnum="addToCart"
-          innerHTML={"Proceed to checkout"}
-          className="w-full"
+        <GoToCheckoutButton
+          title="Proceed to checkout"
+          products={purchaseProducts.map((p) => [p, cart[p.id]])}
+          className="w-full bg-yellow-300 hover:bg-yellow-400"
         />
       </div>
 

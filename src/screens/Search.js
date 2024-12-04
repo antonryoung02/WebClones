@@ -12,20 +12,13 @@ function Search(props) {
   const sentinelRef = useRef(null);
   const {products, update, clear} = useProduct();
   const location = useLocation();
-  const locationRef = useRef(location);
 
   const callback = throttle( async() => {
     if (!isLoading) {
-      const queryParams = new URLSearchParams(locationRef.current.search);
-      const searchQuery = queryParams.get("q");
-      await update(searchQuery || "");
+      await update();
     }
   }, 1000);
 
-
-  useEffect(() => {
-    locationRef.current = location;
-}, [location]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(callback);

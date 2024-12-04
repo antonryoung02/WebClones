@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 function HeaderSection(props) {
   const f = () => {};
-  const {cart, getNumItems} = useCart();
+  const {cart, getNumItemsInCart} = useCart();
   const searchbarRef = props.searchbarRef;
   const navigate = useNavigate()
 
@@ -23,7 +23,7 @@ function HeaderSection(props) {
         <div className="flex flex-row items-end">
           <div className="relative inline-block">
             <BsCart size={40} color="white" />
-            <p className="text-white font-bold absolute inset-0 flex items-center justify-center mb-1">{(getNumItems())}</p>
+            <p className="text-white font-bold absolute inset-0 flex items-center justify-center mb-1">{(getNumItemsInCart())}</p>
           </div>
           <p className="text-white font-bold text-sm">Cart</p>
           </div>

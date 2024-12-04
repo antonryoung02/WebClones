@@ -8,7 +8,7 @@ function ReviewDistribution(props) {
   const averageRating = reviewService.getMean();
 
   return (
-    <div className="flex flex-col gap-3 w-72">
+    <div className="flex flex-col gap-3 w-72 p-2">
       <div className="flex flex-row gap-2">
       <StarRatings
               rating={averageRating}
