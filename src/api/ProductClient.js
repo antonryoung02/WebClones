@@ -25,7 +25,7 @@ class ProductClient {
   }
 
   async getProducts(offset, searchQuery, category) {
-    // Unfortunately I can't search AND filter by category.
+    // API only supports search by query OR search by category
     let queryString = "";
     if (category) {
       queryString = "/category/" + category + "?limit=" + ProductClient.limit + "&skip=" + (offset * ProductClient.limit); 

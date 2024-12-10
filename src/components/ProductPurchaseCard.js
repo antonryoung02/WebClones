@@ -39,7 +39,7 @@ checked:after:-translate-y-1/2 checked:after:w-2 checked:after:h-2 checked:after
         selectedIndex={productCount}
         setSelectedIndex={setProductCount}
       />
-      <AddToCartButton id={product.id}/>
+      <AddToCartButton id={product.id} count={productCount}/>
       <GoToCheckoutButton products={[[product, 1]]} title="Buy now"/>
 
       <div className="flex flex-col gap-1 py-4">

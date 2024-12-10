@@ -23,6 +23,7 @@ function FreeReturnsLabel() {
         </button>
 
         <Modal isVisible={modalVisible} setIsVisible={setModalVisible} modalRef={modalRef}>
+          <div className="w-60 text-sm">
             <div className="flex flex-row justify-between items-center pb-3">
             <p className="font-bold">Return this item for free</p>
             <button onClick={() => setModalVisible(!modalVisible)}><BsXLg style={{ strokeWidth: 2 }} /></button> 
@@ -30,6 +31,7 @@ function FreeReturnsLabel() {
             <p>We offer easy, convenient returns with at least one free return option: no shipping charges. All returns must comply with our returns policy. </p>
             <p className="text-sky-700">Learn more about free returns.</p>
             <p className="font-bold">How to return the item?</p>
+          </div>
           </Modal>
 
     </div>

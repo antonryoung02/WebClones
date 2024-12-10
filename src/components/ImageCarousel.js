@@ -22,9 +22,13 @@ function ImageCarousel(props) {
             <p>Page {Math.ceil(index / itemsPerPage) + 1} of {Math.ceil( (numItems) / itemsPerPage)}</p>
             </div>
             <div className="flex flex-row justify-center items-center gap-4">
-                <button className="w-10 h-10 flex justify-center items-center border-gray-400 border-[1px] rounded-lg" onClick={() => updateCarouselIndex(-1)}><BsChevronLeft style={{strokeWidth:1, color:"#9ca3af"}}/></button>
+                <button className="w-10 h-10 flex justify-center items-center border-gray-400 border-[1px] rounded-lg" onClick={() => updateCarouselIndex(-1)}>
+                    <BsChevronLeft style={{strokeWidth:1, color:"#9ca3af"}}/>
+                </button>
                 <div className="flex flex-row items-start">{children}</div>
-                <button className="w-10 h-10 flex justify-center items-center border-gray-400 border-[1px] rounded-lg" onClick={() => updateCarouselIndex(1)}><BsChevronRight style={{strokeWidth:1, color:"#9ca3af"}} /></button>
+                <button className="w-10 h-10 flex justify-center items-center border-gray-400 border-[1px] rounded-lg" onClick={() => updateCarouselIndex(1)}>
+                    <BsChevronRight style={{strokeWidth:1, color:"#9ca3af"}} />
+                </button>
             </div>
         </div>
     );

@@ -5,27 +5,29 @@ function ImageCollection(props) {
   const [imageIndex, setImageIndex] = useState(0);
 
   return (
-    <div className="flex flex-row w-full items-start sticky top-0">
-      <div className="flex flex-col items-center lg:items-end bg-white w-2/5 py-12">
+    <div className="flex flex-row w-full lg:items-start lg:justify-between sticky top-0">
+      <div className="flex flex-col items-center lg:items-end bg-white w-2/5 py-12 gap-1">
         {images.map((image, index) => (
           <button
             key={index}
             onMouseEnter={() => setImageIndex(index)}
-            className="border-separate border-2 border-transparent hover:border-sky-700  hover:rounded-md"
+            className={`flex border-separate border box-border border-gray-300 rounded-md w-12 h-12 justify-center ${index === imageIndex ? "border-sky-700 border-2" : ""}`}
           >
             <img
               src={image}
-              className={` border-separate h-16 w-auto border border-gray-300 rounded-md`}
+              className={` border-separate h-12 w-auto rounded-md p-1`}
               alt={props.product.id + "_" + index}
             ></img>
           </button>
         ))}
       </div>
-      <img
-        src={images[imageIndex]}
-        className="w-3/4 h-auto  object-contain"
-        alt={props.product.id}
-      ></img>
+      <div className=" h-[36rem] w-[36rem] flex justify-center">
+        <img
+          src={images[imageIndex]}
+          className="h-[36rem] w-auto object-contain"
+          alt={props.product.id}
+        ></img>
+      </div>
     </div>
   );
 }

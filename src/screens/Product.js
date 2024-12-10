@@ -47,25 +47,25 @@ function Product() {
   return (
     <div className="flex flex-col p-6 bg-white">
       <div className="flex lg:flex-row flex-col w-full h-full">
-        <div className="w-full lg:w-1/3">
+        <div className="w-full lg:w-2/5">
           <ImageCollection product={product} />
         </div>
         <div className="bg-white w-full lg:w-2/5 h-full px-4">
           <ProductInformation product={product} />
         </div>
-        <div className="flex justify-center lg:justify-normal bg-white w-full lg:w-1/4 h-full">
+        <div className="flex justify-center lg:justify-normal bg-white w-full lg:w-1/12 h-full">
           <div className="w-96">
             <ProductPurchaseCard product={product} />
           </div>
         </div>
       </div>
-      <div id="reviews">
+      <div id="reviews" className="lg:px-28 flex flex-col">
       <ReviewSection reviews={product.reviews} />
-      </div>
       <hr />
         <RelatedProducts product={product} />
       <hr />
         <ProductHistory />
+        </div>
     </div>
   );
 }

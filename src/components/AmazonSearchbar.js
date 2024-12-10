@@ -5,9 +5,8 @@ import { BsCaretDownFill } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function AmazonSearchbar(props) {
-  const {products, clear, update} = useProduct();
+  const {clear} = useProduct();
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
   const navigate = useNavigate();
   const searchbarRef = useRef(null);
 
@@ -17,7 +16,6 @@ function AmazonSearchbar(props) {
     clear();
     if (queryText) {
       navigate(`/?q=${queryText}`);
-
     }
     else {
       navigate(`/`);
@@ -28,7 +26,6 @@ function AmazonSearchbar(props) {
     if (event.key === 'Enter') {
       handleSubmit();
     }
-
   }
 
   return (
@@ -42,13 +39,13 @@ function AmazonSearchbar(props) {
       <input
         ref={searchbarRef}
         onKeyDown={handleKeyDown}
-        className="w-1/2 h-10 pl-2"
+        className="w-1/2 h-10 pl-2 text-sm"
         type="text"
         placeholder="Search Amazon"
       ></input>
-      <button className="w-12 h-10 bg-fuchsia-700 rounded-r-lg hover:bg-fuchsia-900" onClick={handleSubmit}>
+      <button className="w-11 h-10 bg-[rgb(169,23,111)] rounded-r-md hover:bg-[rgb(127,17,83)]" onClick={handleSubmit}>
         <div className="px-3 py-2">
-          <BsSearch size={24} style={{ color: "white" }} />
+          <BsSearch size={20} style={{ color: "white", strokeWidth: 0.5}} />
         </div>
       </button>
     </div>

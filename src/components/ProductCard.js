@@ -27,10 +27,10 @@ function ProductCard(props) {
   if (type === "sm") {
     // small product cards need flex-col with image, truncated title, price, shipping information
     return  (
-      <div className="flex flex-col items-center h-[108] w-64 bg-white"> 
-      <div className="w-full h-[224px] ">
+      <div className="flex flex-col items-left h-80 w-40 bg-white"> 
+      <div className="h-[200px] w-auto">
         <img
-          className="w-full h-full px-4"
+          className="w-full h-auto"
           src={product.thumbnail}
           alt={product.title}
         />
@@ -39,11 +39,11 @@ function ProductCard(props) {
             func={viewItem}
             args={[product]}
             buttonEnum={"clickableText"}
-            className="text-center"
+            className="text-left"
             innerHTML={
               <Link to={`/product/${product.id}`} state={{ product: product }}>
-                <p className="text-md leading-tight hover:text-orange-700  line-clamp-2">
-                  {product.title}
+                <p className="text-sm leading-tight text-sky-800 hover:underline  line-clamp-3">
+                  {product.title} - {product.description}
                 </p>
               </Link>
             }
@@ -65,8 +65,7 @@ function ProductCard(props) {
             showList={false}
             showPaymentPlan={false}
           />
-          <p className="text-sm">{product.shippingInformation}</p>
-          <AmazonStockWarning stock={product.stock} />
+          <AmazonStockWarning stock={product.stock} className="text-xs" />
           <AddToCartButton id={product.id} className={"w-24"} /> 
       </div>
     )
@@ -102,7 +101,7 @@ function ProductCard(props) {
             showPaymentPlan={true}
           />
           <p className="text-sm">FREE Delivery. {product.shippingInformation}</p>
-          <AmazonStockWarning stock={product.stock} />
+          <AmazonStockWarning stock={product.stock} className="text-sm"/>
           <AddToCartButton id={product.id} className={"w-24"} />
         </div>
       </div>

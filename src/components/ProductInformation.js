@@ -12,7 +12,7 @@ function ProductInformation(props) {
       <p className=" text-2xl">
         {product.title} - {product.description}{" "}
       </p>
-      <div className="flex w-full gap-2 items-end">
+      <div className="flex w-full gap-2 items-end pb-3">
         <p className="text-sm"> {reviewService.getMean()} </p>
         <StarRatings
           rating={reviewService.getMean()}
@@ -24,7 +24,7 @@ function ProductInformation(props) {
         />
         <p className="text-sky-700 text-sm">{product.reviews.length} ratings</p>
       </div>
-      <hr />
+      <hr className="p-1"/>
       <AmazonPriceText
         showList={true}
         showPaymentPlan={true}
@@ -32,7 +32,7 @@ function ProductInformation(props) {
         price={product.price}
       />
       <FreeReturnsLabel />
-      <div className="pt-3">
+      <div className="p-3">
         <table>
           <tr>
             <td className="font-bold">Brand</td>
@@ -59,7 +59,7 @@ function ProductInformation(props) {
           </tr>
         </table>
       </div>
-      <hr />
+      <hr className="p"/>
       <div className="pt-2">
         <p className="font-bold text-lg">About this item </p>
         <ul className="list-disc pl-6 space-y-4">
@@ -84,6 +84,10 @@ function ProductInformation(props) {
             Lorem ipsum odor amet, consectetuer adipiscing elit. Placerat
             sodales iaculis suscipit, porttitor orci maecenas augue. Rhoncus
             suspendisse amet quis porttitor condimentum.
+          </li>
+          <li>
+          Lorem ipsum odor amet, consectetuer adipiscing elit. 
+          Hac ultrices pretium odio vehicula ligula. Fermentum non orci massa himenaeos risus sagittis.
           </li>
         </ul>
       </div>

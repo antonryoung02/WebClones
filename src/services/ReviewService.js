@@ -31,7 +31,7 @@ class ReviewService {
     return this.reviews.filter((r) => r.rating === value);
   }
 
-  getSortedReviews(ascending) {
+  getSortedReviews(ascending=true) {
     if (ascending) {
       this.reviews.sort((a, b) => a.rating - b.rating);
     } else {

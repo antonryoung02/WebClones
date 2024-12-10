@@ -7,6 +7,7 @@ export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({children}) => {
     const [cart, setCart] = useState({});
+    // The cart is a set of product id: count key:val pairs.
 
     useEffect(() => {
         setCart(readFromLocalStorage());
@@ -26,13 +27,11 @@ export const CartProvider = ({children}) => {
       }
 
       function getNumItems(products) {
-        console.log(products)
         let count = 0;
         for (const i in products) {
           if (products[i].id in cart) {
             count += cart[products[i].id];
           } else {
-            console.log(`${products[i].id} not found in cart`)
             count += 1;
           }
         }
@@ -55,7 +54,7 @@ export const CartProvider = ({children}) => {
         let cost = 0;
         products.forEach((p) => {
           if (p.id in cart) {
-            cost += p.price * (1 - p.discountPercentage * 0.01) * cart[p.id];
+            cost += p.price * (1 - p.discountPercentage * 0.01) * cart[p.id] || 1;
           }
         });
         return Math.round(100 * cost) / 100;

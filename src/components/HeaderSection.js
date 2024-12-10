@@ -29,17 +29,7 @@ function HeaderSection(props) {
           </div>
         </Link>
       </div>
-      <div className="flex px-3">
-        <AmazonButton
-          buttonEnum="navigation"
-          innerHTML={
-            <div className="flex items-center gap-1">
-              <BsList size={20} style={{ strokeWidth:1 }}/>
-              <p>All</p>
-            </div>
-          }
-          func={f}
-        />
+      <div className="flex px-3 text-sm lg:text-md">
         <AmazonButton
           buttonEnum="navigation"
           innerHTML="Holiday Deals"

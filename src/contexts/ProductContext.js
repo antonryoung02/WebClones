@@ -12,13 +12,15 @@ export const ProductProvider = ({children}) => {
     const foundEndOfSearchResults = useRef(false);
     const location = useLocation();
 
-    function clear() { // could make this function internal and only expose update.
+    function clear() { 
+        // Responsibility to clear() search results given to Searchbar / Category Select components
         setProducts([]);
         offsetRef.current = 0;
         foundEndOfSearchResults.current = false;
     }
 
     async function update() {
+        // All query information should be set in URLSearchParams and passed to getProducts.
         if (foundEndOfSearchResults.current === true) {
             return;
         }
@@ -29,7 +31,6 @@ export const ProductProvider = ({children}) => {
         const fetchedProducts = await productClient.getProducts(offsetRef.current, searchQuery, category);
         if (fetchedProducts.products.length === 0) {
             foundEndOfSearchResults.current = true;
-            console.log("found end");
         }
         offsetRef.current += 1;
         setProducts((prevProducts) => [...prevProducts, ...fetchedProducts.products]);

@@ -15,8 +15,8 @@ function Review(props) {
         starSpacing="1"
         name="rating"
       />
-      <p className="text-gray-400">Reviewed on {readableDate(review.date)}</p>
-      <p className="pt-3">{review.comment}</p>
+      <p className="text-gray-400 text-sm">Reviewed on {readableDate(review.date)}</p>
+      <p className="pt-3 text-sm">{review.comment}</p>
     </div>
   );
 }

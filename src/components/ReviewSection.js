@@ -1,11 +1,10 @@
-import React, { useState } from "react";
 import ReviewService from "../services/ReviewService";
 import ReviewDistribution from "./ReviewDistribution";
 import Review from "./Review";
 
 function ReviewSection(props) {
-  const reviewService = new ReviewService(props.reviews);
-  const [reviews, setReviews] = useState(reviewService.getReviews());
+  const reviews = props.reviews;
+  const reviewService = new ReviewService(reviews);
 
   return (
     <div className="flex flex-col lg:flex-row w-full py-12 gap-12 lg:px-16 lg:gap-32">

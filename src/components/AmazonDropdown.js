@@ -27,18 +27,16 @@ function AmazonDropdown(props) {
   }, []);
 
   return (
-    <div ref={dropdownRef} className="relative w-40">
-      {/* Dropdown Button */}
+    <div ref={dropdownRef} className="relative w-40 text-sm">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="px-2 border h-8 text-sm border-gray-300 bg-gray-100 rounded-lg w-full text-left focus:ring-2 focus:ring-sky-700"
+        className="px-2 border h-7 text-xs border-gray-300 bg-gray-100 rounded-lg w-full text-left focus:ring-2 focus:ring-sky-700"
       >
         <div className="flex flex-row justify-between items-center">
           <p>Quantity: {selected}</p> <BsChevronDown />
         </div>
       </button>
 
-      {/* Dropdown Options */}
       {isOpen && (
         <div className="absolute bg-white border border-gray-300 rounded shadow-lg w-full h-48 overflow-y-scroll">
           {[...Array(30)].map((_, index) => (
