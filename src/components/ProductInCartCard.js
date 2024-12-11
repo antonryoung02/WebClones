@@ -41,7 +41,7 @@ function ProductInCartCard(props) {
 
   return (
     <div>
-      <div className="flex flex-row px-8 py-4 h-64 items-center">
+      <div className="flex flex-row px-8 py-4 lg:h-64 items-center">
       <div class="relative px-8">
       <input 
         type="checkbox" 
@@ -61,6 +61,7 @@ function ProductInCartCard(props) {
           {checked && "✓"}
       </label>
     </div>
+    <div className="flex flex-col lg:flex-row">
         <div className="h-full p-2">
         <img
           src={product.thumbnail}
@@ -86,8 +87,8 @@ function ProductInCartCard(props) {
             FREE Delivery. {product.shippingInformation}
           </p>
           <FreeReturnsLabel /> 
-          <div className="flex flex-row gap-2 items-center">
-          <div className="flex flex-row gap-7 items-center rounded-full border-[3px] border-separate border-yellow-400 w-fit p-0.5">
+          <div className="flex flex-row gap-2 lg:items-center">
+          <div className="flex flex-row gap-7 lg:items-center rounded-full border-[3px] border-separate border-yellow-400 w-fit p-0.5">
             <button onClick={() => decrementCount()}>
               {getNumItemsWithId(product.id) > 1 ? <FiMinus style={{ strokeWidth: 3 }}/> : <FiTrash style={{ strokeWidth: 3 }}/>}
             </button>
@@ -110,6 +111,7 @@ function ProductInCartCard(props) {
           />
         </div>
         </div>
+      </div>
       </div>
     </div>
   );

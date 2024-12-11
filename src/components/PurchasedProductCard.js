@@ -10,7 +10,8 @@ function PurchasedProductCard(props) {
 
     return (
         <div>
-          <div className="flex flex-row px-8 py-4 h-64 items-center">
+          <div className="flex flex-col lg:flex-row lg:px-8 py-4 lg:h-64 items-center">
+      
             <div className="h-full">
             <img
               src={product.thumbnail}
@@ -18,7 +19,7 @@ function PurchasedProductCard(props) {
               className="h-full w-auto min-w-52"
             />
           </div>
-          <div className="flex flex-row justify-between items-center w-full h-full">
+          <div className="flex flex-col lg:flex-row justify-between lg:items-center w-full h-full">
             <div className="flex flex-col gap-1">
             <AmazonButton
                 buttonEnum={"clickableText"}
@@ -32,7 +33,7 @@ function PurchasedProductCard(props) {
                 }
               />
             </div>
-            <div className="flex flex-col items-center justify-center h-full">
+            <div className="flex flex-col lg:items-center justify-center h-full">
             <p>Count: {count}</p>
               <AmazonPriceText
                 showList={false}

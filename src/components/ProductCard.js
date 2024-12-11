@@ -71,10 +71,10 @@ function ProductCard(props) {
     )
   } else {
   return (
-    <div className="h-72 w-full bg-white border-[1px] border-gray-200 rounded-sm">
-      <div className="flex h-full">
+    <div className="lg:h-72 w-full bg-white border-[1px] border-gray-200 rounded-sm">
+      <div className="flex flex-col lg:flex-row h-full">
         <img
-          className="bg-gray-50 h-full w-auto"
+          className="lg:bg-gray-50 lg:h-full lg:w-auto "
           src={product.thumbnail}
           alt={product.title}
         ></img>
@@ -86,7 +86,7 @@ function ProductCard(props) {
             buttonEnum={"clickableText"}
             innerHTML={
               <Link to={`product/${product.id}`} state={{ product: product }}>
-                <p className="text-lg leading-tight hover:text-orange-700">
+                <p className="text-lg leading-tight hover:text-orange-700 line-clamp-2 lg:line-clamp-4">
                   {product.title} - {product.description}
                 </p>
               </Link>
