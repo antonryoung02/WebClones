@@ -8,7 +8,8 @@ function ProductHistory() {
     const history = browsingHistoryService.getHistory();
     const [products, setProducts] = useState([]);
     const [index, setIndex] = useState(0);
- 
+    const [numItems, setNumItems] = useState(4); 
+
     useEffect(() => {
       const fetchProducts = async () => {
         const productPromises = history.map((id) =>
@@ -22,10 +23,30 @@ function ProductHistory() {
       fetchProducts();
     }, []);
     
+    useEffect(() => {
+        const getScreenSize = () => {
+          if (window.innerWidth >= 1248) {
+            setNumItems(6);
+        } else if (window.innerWidth >= 1024) {
+          setNumItems(4);
+        } else if (window.innerWidth >= 768) {
+            setNumItems(3);
+        } else {
+            setNumItems(1);
+        }
+        setIndex(0);
+        };
+    
+        getScreenSize();
+        
+        window.addEventListener("resize", getScreenSize);
+        return () => window.removeEventListener("resize", getScreenSize);
+    }, []);
+    
     return (    
-        <ImageCarousel index={index} setIndex={setIndex} itemsPerPage={4} numItems={products.length} title="Your Browsing History">
+        <ImageCarousel index={index} setIndex={setIndex} itemsPerPage={numItems} numItems={products.length} title="Your Browsing History">
           <div className="flex flex-row gap-4">
-          {products.slice(index, index+4).map((product) => (
+          {products.slice(index, index+numItems).map((product) => (
               <ProductCard key={product.id} product={product} type="sm" />
           ))}
           </div>

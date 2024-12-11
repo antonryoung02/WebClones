@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import AmazonButton from "./AmazonButton";
 import AmazonSearchbar from "./AmazonSearchbar";
 import { BsList } from "react-icons/bs";
@@ -11,12 +11,28 @@ import { useNavigate } from "react-router-dom";
 function HeaderSection(props) {
   const f = () => {};
   const {cart, getNumItemsInCart} = useCart();
+  const [showQuickLinks, setShowQuickLinks] = useState(true);
   const searchbarRef = props.searchbarRef;
   const navigate = useNavigate()
 
+  useEffect(() => {
+    const getScreenSize = () => {
+    if (window.innerWidth >= 1024) {
+      setShowQuickLinks(true)
+    } else {
+      setShowQuickLinks(false) 
+    }
+    };
+
+    getScreenSize();
+    
+    window.addEventListener("resize", getScreenSize);
+    return () => window.removeEventListener("resize", getScreenSize);
+}, []);
+
   return (
-    <div className="bg-emerald-800 h-auto w-full shadow-lg">
-      <div className="flex flex-row p-3 gap-4 bg-gradient-to-r from-emerald-900 to-emerald-700">
+    <div className="bg-[rgb(38,86,74)] h-auto w-full shadow-lg">
+      <div className="flex flex-row p-2 gap-4 bg-gradient-to-r from-[rgb(23,60,50)] to-[rgb(49,113,78)]">
         <button onClick={() => navigate('/')}><SiAmazon size={40} color="white" /></button>
         <AmazonSearchbar searchbarRef={searchbarRef}/>
         <Link to="/cart">
@@ -29,7 +45,10 @@ function HeaderSection(props) {
           </div>
         </Link>
       </div>
-      <div className="flex px-3 text-sm lg:text-md">
+
+      <div className="flex px-3 text-sm lg:text-md min-h-4">
+      {showQuickLinks && 
+      <>
         <AmazonButton
           buttonEnum="navigation"
           innerHTML="Holiday Deals"
@@ -67,6 +86,8 @@ function HeaderSection(props) {
         />
         <AmazonButton buttonEnum="navigation" innerHTML="Household" func={f} />
         <AmazonButton buttonEnum="navigation" innerHTML="Baby Care" func={f} />
+      </>
+      }
       </div>
     </div>
   );

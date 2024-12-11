@@ -24,7 +24,7 @@ function ProductInformation(props) {
         />
         <p className="text-sky-700 text-sm">{product.reviews.length} ratings</p>
       </div>
-      <hr className="p-1"/>
+      <hr className="p-1 "/>
       <AmazonPriceText
         showList={true}
         showPaymentPlan={true}

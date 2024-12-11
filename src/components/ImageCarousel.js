@@ -1,5 +1,6 @@
 import { BsChat, BsChevronRight } from "react-icons/bs";
 import { BsChevronLeft } from "react-icons/bs";
+import {useState, useEffect} from "react";
 
 function ImageCarousel(props) {
     const { index, setIndex, numItems, itemsPerPage, title, children } = props;
@@ -18,8 +19,8 @@ function ImageCarousel(props) {
     return (
         <div className="h-[466px]">
             <div className="flex flex-row justify-between items-center p-4">
-            <p className="font-semibold text-2xl">{title}</p>
-            <p>Page {Math.ceil(index / itemsPerPage) + 1} of {Math.ceil( (numItems) / itemsPerPage)}</p>
+            <p className="font-semibold lg:text-2xl">{title}</p>
+            <p className="text-xs lg:text-md">Page {Math.ceil(index / itemsPerPage) + 1} of {Math.ceil( (numItems) / itemsPerPage)}</p>
             </div>
             <div className="flex flex-row justify-center items-center gap-4">
                 <button className="w-10 h-10 flex justify-center items-center border-gray-400 border-[1px] rounded-lg" onClick={() => updateCarouselIndex(-1)}>

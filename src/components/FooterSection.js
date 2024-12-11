@@ -7,7 +7,7 @@ function FooterSection() {
       >
         Back to top
       </button>
-      <div className="flex flex-row gap-20 bg-slate-800 w-full py-10 justify-center">
+      <div className="grid-cols-1 space-y-2 text-center lg:flex lg:flex-row gap-20 bg-slate-800 w-full py-10 lg:justify-center">
         <div className="flex flex-col gap-2 text-white">
           <p className="text-lg font-bold">Get to Know Us </p>
           <p className="text-sm">Careers</p>
@@ -60,8 +60,9 @@ function FooterSection() {
       </div>
       <hr className="" />
       <div className="bg-slate-800 w-full h-20"></div>
-      <div className="bg-gray-900 flex justify-center">
-        <div className="bg-clear grid grid-cols-7 text-white text-xs w-1/2 gap-2 py-10">
+
+      <div className=" bg-gray-900 flex justify-center">
+        <div className="bg-clear grid grid-cols-2 lg:grid-cols-7 text-white text-xs w-1/2 gap-2 py-10">
           <div className="w-24">
             <h3>Amazon Music</h3>
             <p className="text-gray-500">Stream millions of songs</p>

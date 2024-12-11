@@ -34,8 +34,8 @@ function SelectCategoryFilter(props) {
 
 
   return (
-    <div className="grid-cols-8 space-x-2 lg:flex lg:flex-col bg-white px-12 py-2 items-left">
-      <h1 className="text-xl font-bold">Search by Category</h1>
+    <div className="grid-cols-8 space-x-2 lg:flex lg:flex-col bg-white px-4 py-2 items-left">
+      <h1 className="text-sm font-bold px-2">Search by Category</h1>
       {categories.map((e, index) => (
         <AmazonButton
             key={index}

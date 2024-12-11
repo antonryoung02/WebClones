@@ -10,6 +10,28 @@ function RelatedProducts(props) {
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [index, setIndex] = useState(0);
 
+    const [numItems, setNumItems] = useState(4);
+    
+    useEffect(() => {
+        const getScreenSize = () => {
+            if (window.innerWidth >= 1248) {
+                setNumItems(6);
+            } else if (window.innerWidth >= 1024) {
+              setNumItems(4);
+            } else if (window.innerWidth >= 768) {
+                setNumItems(3);
+            } else {
+                setNumItems(1);
+            }
+            setIndex(0);
+        };
+    
+        getScreenSize();
+        
+        window.addEventListener("resize", getScreenSize);
+        return () => window.removeEventListener("resize", getScreenSize);
+    }, []);
+
     useEffect(() => {
         const getRelatedProducts = async() => {
             if (product.tags.length === 0) {
@@ -25,9 +47,9 @@ function RelatedProducts(props) {
     }, [])
 
     return (
-        <ImageCarousel index={index} setIndex={setIndex} itemsPerPage={4} numItems={relatedProducts.length} title="Related Products">
+        <ImageCarousel index={index} setIndex={setIndex} itemsPerPage={numItems} numItems={relatedProducts.length} title="Related Products">
           <div className="flex flex-row gap-4">
-          {relatedProducts.slice(index, index+4).map((product) => (
+          {relatedProducts.slice(index, index+numItems).map((product) => (
             <ProductCard key={product.id} product={product} type="sm" />
           ))}
           </div>

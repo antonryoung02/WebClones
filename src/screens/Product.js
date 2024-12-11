@@ -45,7 +45,7 @@ function Product() {
   }
 
   return (
-    <div className="flex flex-col p-6 bg-white">
+    <div className="flex flex-col p-2 lg:p-6 bg-white">
       <div className="flex lg:flex-row flex-col w-full h-full">
         <div className="w-full lg:w-2/5">
           <ImageCollection product={product} />
@@ -59,7 +59,7 @@ function Product() {
           </div>
         </div>
       </div>
-      <div id="reviews" className="lg:px-28 flex flex-col">
+      <div id="reviews" className="lg:px-24 flex flex-col">
       <ReviewSection reviews={product.reviews} />
       <hr />
         <RelatedProducts product={product} />
